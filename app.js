@@ -116,6 +116,19 @@ app.delete("/notes/:id", verifyToken, (req, res) => {
 	res.json({ message: "Deleted successfully" });
 });
 
+app.put("/notes/:id", verifyToken, (req, res) => {
+	const noteId = Number(req.params.id);
+	const userId = req.user.id;
+
+	const { title, content } = req.body;
+
+	db.prepare(
+		"UPDATE notes SET title = ?, content = ? WHERE id = ? AND user_id = ?",
+	).run(title, content, noteId, userId);
+
+	res.json({message: "Updates successfully"})
+});
+
 app.listen(3000, () => {
 	console.log("Running");
 });
