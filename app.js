@@ -4,6 +4,7 @@ const db = new Database("app.db");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { verifyToken } = require("./middleware");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
@@ -66,27 +67,6 @@ app.post("/login", async (req, res) => {
 	res.json({ token });
 });
 
-const verifyToken = (req, res, next) => {
-	const authHeader = req.headers.authorization;
-
-	if (!authHeader) {
-		return res.json({ message: "Something went wrong" });
-	}
-
-	const token = authHeader.split(" ")[1];
-	if (!token) {
-		return res.json({ message: "Something went wrong" });
-	}
-
-	try {
-		jwt.verify(token, JWT_SECRET);
-		req.user = decoded;
-		next();
-	} catch (err) {
-		res.json({ message: "Something went wrong" });
-	}
-};
-
 app.get("/notes", verifyToken, (req, res) => {
 	const result = db
 		.prepare("SELECT * FROM notes WHERE user_id = ?")
@@ -126,7 +106,7 @@ app.put("/notes/:id", verifyToken, (req, res) => {
 		"UPDATE notes SET title = ?, content = ? WHERE id = ? AND user_id = ?",
 	).run(title, content, noteId, userId);
 
-	res.json({message: "Updates successfully"})
+	res.json({ message: "Updates successfully" });
 });
 
 app.listen(3000, () => {
