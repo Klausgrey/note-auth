@@ -132,29 +132,6 @@ The server will run on `http://localhost:3000` by default.
    - URL: `http://localhost:3000/notes/:id`
    - Headers: `Authorization: Bearer <your_token>`
 
-### Using cURL
-
-```bash
-# Register a new user
-curl -X POST http://localhost:3000/register \
-  -H "Content-Type: application/json" \
-  -d '{"username": "john", "password": "password123"}'
-
-# Login
-curl -X POST http://localhost:3000/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "john", "password": "password123"}'
-
-# Get notes (replace TOKEN with your JWT token)
-curl -X GET http://localhost:3000/notes \
-  -H "Authorization: Bearer TOKEN"
-
-# Create a note
-curl -X POST http://localhost:3000/notes \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer TOKEN" \
-  -d '{"title": "My Note", "content": "This is my first note"}'
-```
 
 ## Database Schema
 
