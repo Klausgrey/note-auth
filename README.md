@@ -18,6 +18,23 @@ A secure note-taking API built with Express.js featuring user authentication and
 - **jsonwebtoken** - JWT token generation and verification
 - **dotenv** - Environment variable management
 
+## Project Structure
+
+```
+note-auth/
+├── controllers/          # Request handlers and business logic
+│   ├── authController.js # Authentication logic
+│   └── noteController.js # Note CRUD operations
+├── models/              # Database models and queries
+│   └── db.js           # SQLite database initialization
+├── middleware/          # Express middleware
+│   └── authMiddleware.js # JWT verification
+├── app.js              # Express app configuration
+├── server.js           # Server entry point
+├── package.json
+└── README.md
+```
+
 ## Installation
 
 1. Clone the repository:
