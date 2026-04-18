@@ -97,6 +97,43 @@ The server will run on `http://localhost:3000` by default.
 
 ## Usage Example
 
+### Using Postman
+
+1. **Register a new user:**
+   - Method: `POST`
+   - URL: `http://localhost:3000/register`
+   - Body (JSON): `{ "username": "john", "password": "password123" }`
+
+2. **Login:**
+   - Method: `POST`
+   - URL: `http://localhost:3000/login`
+   - Body (JSON): `{ "username": "john", "password": "password123" }`
+   - Copy the token from the response
+
+3. **Get all notes:**
+   - Method: `GET`
+   - URL: `http://localhost:3000/notes`
+   - Headers: `Authorization: Bearer <your_token>`
+
+4. **Create a note:**
+   - Method: `POST`
+   - URL: `http://localhost:3000/notes`
+   - Headers: `Authorization: Bearer <your_token>`
+   - Body (JSON): `{ "title": "My Note", "content": "This is my first note" }`
+
+5. **Update a note:**
+   - Method: `PUT`
+   - URL: `http://localhost:3000/notes/:id`
+   - Headers: `Authorization: Bearer <your_token>`
+   - Body (JSON): `{ "title": "Updated Title", "content": "Updated content" }`
+
+6. **Delete a note:**
+   - Method: `DELETE`
+   - URL: `http://localhost:3000/notes/:id`
+   - Headers: `Authorization: Bearer <your_token>`
+
+### Using cURL
+
 ```bash
 # Register a new user
 curl -X POST http://localhost:3000/register \
